@@ -8,6 +8,12 @@ import (
 	"path/filepath"
 )
 
+// Создаем структуру `application` для хранения зависимостей всего веб-приложения.
+type application struct {
+	errorLog *log.Logger
+	infoLog  *log.Logger
+}
+
 type neuteredFileSystem struct {
 	fs http.FileSystem
 }
@@ -49,17 +55,22 @@ func main() {
 	// Создаем логгер для записи информационных сообщений.
 	infoLog := log.New(f, "INFO\t", log.Ldate|log.Ltime)
 	// Создаем логгер для записи сообщений об ошибках.
-	errorLog := log.New(os.Stderr, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
+	errorLog := log.New(f, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
+
+	// Инициализируем новую структуру с зависимостями приложения.
+	app := &application{
+		errorLog: errorLog,
+		infoLog:  infoLog,
+	}
 
 	// Регистрируем два новых обработчика и соответствующие URL-шаблоны.
 	mux := http.NewServeMux()
-	mux.HandleFunc("/", home)
-	mux.HandleFunc("/snippet", showSnippet)
-	mux.HandleFunc("/snippet/create", createSnippet)
+	mux.HandleFunc("/", app.home)
+	mux.HandleFunc("/snippet", app.showSnippet)
+	mux.HandleFunc("/snippet/create", app.createSnippet)
 
 	// Настройка файлового сервера.
-	fileServer := http.FileServer(neuteredFileSystem{http.Dir("./ui/static/")})
-	mux.Handle("/static", http.NotFoundHandler())
+	fileServer := http.FileServer(http.Dir("./ui/static/"))
 	mux.Handle("/static/", http.StripPrefix("/static", fileServer))
 
 	// Создаем сервер.

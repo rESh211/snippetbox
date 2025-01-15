@@ -1,1 +1,4 @@
-INFO	2025/01/15 21:37:12 Запуск сервера на :4000
+INFO	2025/01/15 21:58:38 Запуск сервера на :4000
+ERROR	2025/01/15 21:58:51 handlers.go:30: open ./ui/html/home.page.tmpl: The system cannot find the file specified.
+ERROR	2025/01/15 21:58:52 handlers.go:30: open ./ui/html/home.page.tmpl: The system cannot find the file specified.
+ERROR	2025/01/15 21:59:01 handlers.go:30: open ./ui/html/home.page.tmpl: The system cannot find the file specified.
