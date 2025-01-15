@@ -1,4 +1,38 @@
-INFO	2025/01/15 21:58:38 Запуск сервера на :4000
-ERROR	2025/01/15 21:58:51 handlers.go:30: open ./ui/html/home.page.tmpl: The system cannot find the file specified.
-ERROR	2025/01/15 21:58:52 handlers.go:30: open ./ui/html/home.page.tmpl: The system cannot find the file specified.
-ERROR	2025/01/15 21:59:01 handlers.go:30: open ./ui/html/home.page.tmpl: The system cannot find the file specified.
+INFO	2025/01/15 22:47:14 Запуск сервера на :4000
+ERROR	2025/01/15 22:47:25 handlers.go:30: open ./ui/html/home.page.tmpl: The system cannot find the file specified.
+goroutine 6 [running]:
+runtime/debug.Stack()
+	D:/Программирование GO/src/runtime/debug/stack.go:24 +0x65
+main.(*application).serverError(0xc000052d60, {0xf22a30, 0xc0000b8000}, {0xf20640?, 0xc000088150?})
+	D:/рабочий стол/go/snippetbox/cmd/web/helpers.go:11 +0x58
+main.(*application).home(0xb81806?, {0xf22a30?, 0xc0000b8000}, 0x26752c69728?)
+	D:/рабочий стол/go/snippetbox/cmd/web/handlers.go:30 +0x14e
+net/http.HandlerFunc.ServeHTTP(0xc00007b400?, {0xf22a30?, 0xc0000b8000?}, 0xb0de28?)
+	D:/Программирование GO/src/net/http/server.go:2122 +0x2f
+net/http.(*ServeMux).ServeHTTP(0x0?, {0xf22a30, 0xc0000b8000}, 0xc000098000)
+	D:/Программирование GO/src/net/http/server.go:2500 +0x149
+net/http.serverHandler.ServeHTTP({0xc000088030?}, {0xf22a30, 0xc0000b8000}, 0xc000098000)
+	D:/Программирование GO/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc000154000, {0xf22c98, 0xc000079380})
+	D:/Программирование GO/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Программирование GO/src/net/http/server.go:3089 +0x5ed
+ERROR	2025/01/15 22:44:47 helpers.go:12: open ./ui/html/home.page.tmpl: The system cannot find the file specified.
+goroutine 6 [running]:
+runtime/debug.Stack()
+	D:/Программирование GO/src/runtime/debug/stack.go:24 +0x65
+main.(*application).serverError(0xc000052d60, {0xc62a30, 0xc0000b81c0}, {0xc60640?, 0xc000088210?})
+	D:/рабочий стол/go/snippetbox/cmd/web/helpers.go:11 +0x66
+main.(*application).home(0x2e9750?, {0xc62a30?, 0xc0000b81c0}, 0x23ca82e9728?)
+	D:/рабочий стол/go/snippetbox/cmd/web/handlers.go:30 +0x14e
+net/http.HandlerFunc.ServeHTTP(0xc00007b400?, {0xc62a30?, 0xc0000b81c0?}, 0x84de28?)
+	D:/Программирование GO/src/net/http/server.go:2122 +0x2f
+net/http.(*ServeMux).ServeHTTP(0x0?, {0xc62a30, 0xc0000b81c0}, 0xc000098100)
+	D:/Программирование GO/src/net/http/server.go:2500 +0x149
+net/http.serverHandler.ServeHTTP({0xc000088030?}, {0xc62a30, 0xc0000b81c0}, 0xc000098100)
+	D:/Программирование GO/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc000154000, {0xc62c98, 0xc000079380})
+	D:/Программирование GO/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Программирование GO/src/net/http/server.go:3089 +0x5ed
+

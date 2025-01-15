@@ -12,7 +12,7 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 	// Проверяется, если текущий путь URL запроса точно совпадает с шаблоном "/".
 	//Если нет, вызывается функция http.NotFound() для возвращения клиенту ошибки 404.
 	if r.URL.Path != "/" {
-		http.NotFound(w, r)
+		app.notFound(w)
 		return
 	}
 
@@ -27,8 +27,7 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 	// Если возникла ошибка,ответ: 500 Internal Server Error (Внутренняя ошибка на сервере).
 	ts, err := template.ParseFiles(files...)
 	if err != nil {
-		app.errorLog.Println(err.Error())
-		http.Error(w, "Внутренняя ошибка сервера", 500)
+		app.serverError(w, err)
 		return
 	}
 
@@ -36,8 +35,7 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 	//Последний параметр в Execute() предоставляет возможность отправки динамических данных в шаблон.
 	err = ts.Execute(w, nil)
 	if err != nil {
-		app.errorLog.Println(err.Error())
-		http.Error(w, "Внутренняя ошибка сервера", 500)
+		app.serverError(w, err)
 	}
 }
 
@@ -47,7 +45,7 @@ func (app *application) showSnippet(w http.ResponseWriter, r *http.Request) {
 	//Если его нельзя конвертировать в integer, или значение меньше 1, возвращаем ответ 404 - страница не найдена!
 	id, err := strconv.Atoi(r.URL.Query().Get("id"))
 	if err != nil || id < 1 {
-		http.NotFound(w, r)
+		app.notFound(w)
 		return
 	}
 
@@ -62,7 +60,7 @@ func (app *application) createSnippet(w http.ResponseWriter, r *http.Request) {
 		// Используем метод Header().Set() для добавления заголовка 'Allow: POST' в карту HTTP-заголовков.
 		w.Header().Set("Allow", http.MethodPost)
 		// Используем функцию http.Error() для отправки кода состояния 405 с соответствующим сообщением.
-		http.Error(w, "Метод запрещен!", 405)
+		app.clientError(w, http.StatusMethodNotAllowed)
 		return
 	}
 	w.Write([]byte("Создание новой заметки..."))
