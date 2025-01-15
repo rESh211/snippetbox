@@ -1,3 +1,7 @@
+//Парсинг настроек конфигурации среды выполнения для приложения.
+//Установление зависимостей для обработчиков.
+//Запуск HTTP-сервера.
+
 package main
 
 import (
@@ -63,16 +67,6 @@ func main() {
 		infoLog:  infoLog,
 	}
 
-	// Регистрируем два новых обработчика и соответствующие URL-шаблоны.
-	mux := http.NewServeMux()
-	mux.HandleFunc("/", app.home)
-	mux.HandleFunc("/snippet", app.showSnippet)
-	mux.HandleFunc("/snippet/create", app.createSnippet)
-
-	// Настройка файлового сервера.
-	fileServer := http.FileServer(http.Dir("./ui/static/"))
-	mux.Handle("/static/", http.StripPrefix("/static", fileServer))
-
 	// Создаем сервер.
 	srv := &http.Server{
 		// Адрес, на котором сервер будет слушать.
@@ -80,7 +74,7 @@ func main() {
 		// Лог для ошибок.
 		ErrorLog: errorLog,
 		// Мультиплексор для маршрутизации запросов.
-		Handler: mux,
+		Handler: app.routes(),
 	}
 
 	// Запускаем веб-сервер и записываем лог.
