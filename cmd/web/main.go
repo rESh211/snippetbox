@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"log"
 	"net/http"
 	"path/filepath"
@@ -33,6 +34,10 @@ func (nfs neuteredFileSystem) Open(path string) (http.File, error) {
 }
 
 func main() {
+	//Создаем новый флаг командной строки, значение по умолчанию: ":400
+	addr := flag.String("addr", ":4000", "Сетевой адрес HTTP")
+	flag.Parse()
+
 	// Регистрируем два новых обработчика и соответствующие URL-шаблоны в
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", home)
@@ -43,7 +48,8 @@ func main() {
 	mux.Handle("/static", http.NotFoundHandler())
 	mux.Handle("/static/", http.StripPrefix("/static", fileServer))
 
-	log.Println("Запуск веб-сервера на http://127.0.0.1:4000")
-	err := http.ListenAndServe(":4000", mux)
+	// Запускаем веб-сервер и записываем лог.
+	log.Printf("Запуск сервера на %s", *addr)
+	err := http.ListenAndServe(*addr, mux)
 	log.Fatal(err)
 }
