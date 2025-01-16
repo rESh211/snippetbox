@@ -5,6 +5,7 @@
 package main
 
 import (
+	"database/sql"
 	"flag"
 	"log"
 	"net/http"
@@ -44,9 +45,23 @@ func (nfs neuteredFileSystem) Open(path string) (http.File, error) {
 	return f, nil
 }
 
+// Функция openDB() обертывает sql.Open() и возвращает пул соединений sql.DB для заданной строки подключения (DSN).
+func openDB(dsn string) (*sql.DB, error) {
+	db, err := sql.Open("mysql", dsn)
+	if err != nil {
+		return nil, err
+	}
+	if err = db.Ping(); err != nil {
+		return nil, err
+	}
+	return db, nil
+}
+
 func main() {
 	//Создаем новый флаг командной строки, значение по умолчанию: ":400.
 	addr := flag.String("addr", ":4000", "Сетевой адрес HTTP")
+	// Определение нового флага из командной строки для настройки MySQL подключения.
+	dsn := flag.String("dsn", "web:pass@/snippetbox?parseTime=true", "Название MySQL источника данных")
 	flag.Parse()
 
 	// Открываем файл для записи логов.
@@ -60,6 +75,14 @@ func main() {
 	infoLog := log.New(f, "INFO\t", log.Ldate|log.Ltime)
 	// Создаем логгер для записи сообщений об ошибках.
 	errorLog := log.New(f, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
+
+	//Функцию openDB().Мы передаем в нее полученный источник данных (DSN) из флага командной строки.
+	db, err := openDB(*dsn)
+	if err != nil {
+		errorLog.Fatal(err)
+	}
+	// Мы также откладываем вызов db.Close(), чтобы пул соединений был закрыт до выхода из функции main().
+	defer db.Close()
 
 	// Инициализируем новую структуру с зависимостями приложения.
 	app := &application{

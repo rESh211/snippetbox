@@ -1,5 +1,5 @@
-INFO	2025/01/15 22:47:14 Запуск сервера на :4000
-ERROR	2025/01/15 22:47:25 handlers.go:30: open ./ui/html/home.page.tmpl: The system cannot find the file specified.
+ERROR	2025/01/16 23:26:36 main.go:82: sql: unknown driver "mysql" (forgotten import?)
+:25 handlers.go:30: open ./ui/html/home.page.tmpl: The system cannot find the file specified.
 goroutine 6 [running]:
 runtime/debug.Stack()
 	D:/Программирование GO/src/runtime/debug/stack.go:24 +0x65
