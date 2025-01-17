@@ -1,9 +1,8 @@
-ERROR	2025/01/16 23:26:36 main.go:82: sql: unknown driver "mysql" (forgotten import?)
-:25 handlers.go:30: open ./ui/html/home.page.tmpl: The system cannot find the file specified.
-goroutine 6 [running]:
-runtime/debug.Stack()
-	D:/РџСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёРµ GO/src/runtime/debug/stack.go:24 +0x65
-main.(*application).serverError(0xc000052d60, {0xf22a30, 0xc0000b8000}, {0xf20640?, 0xc000088150?})
+INFO	2025/01/18 00:21:37 Р—Р°РїСѓСЃРє СЃРµСЂРІРµСЂР° РЅР° :4000
+РєР»СЋС‡РµРЅРёРё Рє Р±Р°Р·Рµ РґР°РЅРЅС‹С…: pq: пользователь "postgres" не прошёл проверку подлинности (по паролю)
+ERROR	2025/01/17 23:21:53 main.go:93: pq: пользователь "postgres" не прошёл проверку подлинности (по паролю)
+' (using password: YES)
+lication).serverError(0xc000052d60, {0xf22a30, 0xc0000b8000}, {0xf20640?, 0xc000088150?})
 	D:/СЂР°Р±РѕС‡РёР№ СЃС‚РѕР»/go/snippetbox/cmd/web/helpers.go:11 +0x58
 main.(*application).home(0xb81806?, {0xf22a30?, 0xc0000b8000}, 0x26752c69728?)
 	D:/СЂР°Р±РѕС‡РёР№ СЃС‚РѕР»/go/snippetbox/cmd/web/handlers.go:30 +0x14e
