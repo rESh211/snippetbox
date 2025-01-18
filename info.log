@@ -1,37 +1,108 @@
-INFO	2025/01/18 00:21:37 Запуск сервера на :4000
-ключении к базе данных: pq: ������������ "postgres" �� ������ �������� ����������� (�� ������)
-ERROR	2025/01/17 23:21:53 main.go:93: pq: ������������ "postgres" �� ������ �������� ����������� (�� ������)
-' (using password: YES)
-lication).serverError(0xc000052d60, {0xf22a30, 0xc0000b8000}, {0xf20640?, 0xc000088150?})
+INFO	2025/01/18 17:25:25 Запуск сервера на :4000
+ERROR	2025/01/18 17:25:01 main.go:113: listen tcp :4000: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+ack()
+	D:/Программирование GO/src/runtime/debug/stack.go:24 +0x65
+main.(*application).serverError(0xc00008e1b0, {0xdf5c30, 0xc00016a000}, {0xdf35e0?, 0xc000079740?})
 	D:/рабочий стол/go/snippetbox/cmd/web/helpers.go:11 +0x58
-main.(*application).home(0xb81806?, {0xf22a30?, 0xc0000b8000}, 0x26752c69728?)
+main.(*application).home(0x9d1e46?, {0xdf5c30?, 0xc00016a000}, 0x1e3fffa4ce8?)
 	D:/рабочий стол/go/snippetbox/cmd/web/handlers.go:30 +0x14e
-net/http.HandlerFunc.ServeHTTP(0xc00007b400?, {0xf22a30?, 0xc0000b8000?}, 0xb0de28?)
+net/http.HandlerFunc.ServeHTTP(0xc000094500?, {0xdf5c30?, 0xc00016a000?}, 0x95de28?)
 	D:/Программирование GO/src/net/http/server.go:2122 +0x2f
-net/http.(*ServeMux).ServeHTTP(0x0?, {0xf22a30, 0xc0000b8000}, 0xc000098000)
+net/http.(*ServeMux).ServeHTTP(0x0?, {0xdf5c30, 0xc00016a000}, 0xc000160000)
 	D:/Программирование GO/src/net/http/server.go:2500 +0x149
-net/http.serverHandler.ServeHTTP({0xc000088030?}, {0xf22a30, 0xc0000b8000}, 0xc000098000)
+net/http.serverHandler.ServeHTTP({0xc000079620?}, {0xdf5c30, 0xc00016a000}, 0xc000160000)
 	D:/Программирование GO/src/net/http/server.go:2936 +0x316
-net/http.(*conn).serve(0xc000154000, {0xf22c98, 0xc000079380})
+net/http.(*conn).serve(0xc0000c4090, {0xdf5f58, 0xc0000982a0})
 	D:/Программирование GO/src/net/http/server.go:1995 +0x612
 created by net/http.(*Server).Serve
 	D:/Программирование GO/src/net/http/server.go:3089 +0x5ed
-ERROR	2025/01/15 22:44:47 helpers.go:12: open ./ui/html/home.page.tmpl: The system cannot find the file specified.
-goroutine 6 [running]:
+ERROR	2025/01/18 17:14:40 handlers.go:30: open ./ui/html/home.page.tmpl: The system cannot find the path specified.
+goroutine 19 [running]:
 runtime/debug.Stack()
 	D:/Программирование GO/src/runtime/debug/stack.go:24 +0x65
-main.(*application).serverError(0xc000052d60, {0xc62a30, 0xc0000b81c0}, {0xc60640?, 0xc000088210?})
-	D:/рабочий стол/go/snippetbox/cmd/web/helpers.go:11 +0x66
-main.(*application).home(0x2e9750?, {0xc62a30?, 0xc0000b81c0}, 0x23ca82e9728?)
+main.(*application).serverError(0xc00008e1b0, {0xdf5c30, 0xc00016a1c0}, {0xdf35e0?, 0xc000079800?})
+	D:/рабочий стол/go/snippetbox/cmd/web/helpers.go:11 +0x58
+main.(*application).home(0xfa4d10?, {0xdf5c30?, 0xc00016a1c0}, 0x1e3fffa4ce8?)
 	D:/рабочий стол/go/snippetbox/cmd/web/handlers.go:30 +0x14e
-net/http.HandlerFunc.ServeHTTP(0xc00007b400?, {0xc62a30?, 0xc0000b81c0?}, 0x84de28?)
+net/http.HandlerFunc.ServeHTTP(0xc000094500?, {0xdf5c30?, 0xc00016a1c0?}, 0x95de28?)
 	D:/Программирование GO/src/net/http/server.go:2122 +0x2f
-net/http.(*ServeMux).ServeHTTP(0x0?, {0xc62a30, 0xc0000b81c0}, 0xc000098100)
+net/http.(*ServeMux).ServeHTTP(0x0?, {0xdf5c30, 0xc00016a1c0}, 0xc000160100)
 	D:/Программирование GO/src/net/http/server.go:2500 +0x149
-net/http.serverHandler.ServeHTTP({0xc000088030?}, {0xc62a30, 0xc0000b81c0}, 0xc000098100)
+net/http.serverHandler.ServeHTTP({0xc000079620?}, {0xdf5c30, 0xc00016a1c0}, 0xc000160100)
 	D:/Программирование GO/src/net/http/server.go:2936 +0x316
-net/http.(*conn).serve(0xc000154000, {0xc62c98, 0xc000079380})
+net/http.(*conn).serve(0xc0000c4090, {0xdf5f58, 0xc0000982a0})
 	D:/Программирование GO/src/net/http/server.go:1995 +0x612
 created by net/http.(*Server).Serve
 	D:/Программирование GO/src/net/http/server.go:3089 +0x5ed
-
+ERROR	2025/01/18 17:14:41 handlers.go:30: open ./ui/html/home.page.tmpl: The system cannot find the path specified.
+goroutine 19 [running]:
+runtime/debug.Stack()
+	D:/Программирование GO/src/runtime/debug/stack.go:24 +0x65
+main.(*application).serverError(0xc00008e1b0, {0xdf5c30, 0xc00016a380}, {0xdf35e0?, 0xc0000798c0?})
+	D:/рабочий стол/go/snippetbox/cmd/web/helpers.go:11 +0x58
+main.(*application).home(0xfa4d10?, {0xdf5c30?, 0xc00016a380}, 0x1e3fffa4ce8?)
+	D:/рабочий стол/go/snippetbox/cmd/web/handlers.go:30 +0x14e
+net/http.HandlerFunc.ServeHTTP(0xc000094500?, {0xdf5c30?, 0xc00016a380?}, 0x95de28?)
+	D:/Программирование GO/src/net/http/server.go:2122 +0x2f
+net/http.(*ServeMux).ServeHTTP(0x0?, {0xdf5c30, 0xc00016a380}, 0xc000160200)
+	D:/Программирование GO/src/net/http/server.go:2500 +0x149
+net/http.serverHandler.ServeHTTP({0xc000079620?}, {0xdf5c30, 0xc00016a380}, 0xc000160200)
+	D:/Программирование GO/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0000c4090, {0xdf5f58, 0xc0000982a0})
+	D:/Программирование GO/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Программирование GO/src/net/http/server.go:3089 +0x5ed
+ERROR	2025/01/18 17:14:41 handlers.go:30: open ./ui/html/home.page.tmpl: The system cannot find the path specified.
+goroutine 19 [running]:
+runtime/debug.Stack()
+	D:/Программирование GO/src/runtime/debug/stack.go:24 +0x65
+main.(*application).serverError(0xc00008e1b0, {0xdf5c30, 0xc00016a540}, {0xdf35e0?, 0xc000079980?})
+	D:/рабочий стол/go/snippetbox/cmd/web/helpers.go:11 +0x58
+main.(*application).home(0xfa4d10?, {0xdf5c30?, 0xc00016a540}, 0x1e3fffa4ce8?)
+	D:/рабочий стол/go/snippetbox/cmd/web/handlers.go:30 +0x14e
+net/http.HandlerFunc.ServeHTTP(0xc000094500?, {0xdf5c30?, 0xc00016a540?}, 0x95de28?)
+	D:/Программирование GO/src/net/http/server.go:2122 +0x2f
+net/http.(*ServeMux).ServeHTTP(0x0?, {0xdf5c30, 0xc00016a540}, 0xc000160300)
+	D:/Программирование GO/src/net/http/server.go:2500 +0x149
+net/http.serverHandler.ServeHTTP({0xc000079620?}, {0xdf5c30, 0xc00016a540}, 0xc000160300)
+	D:/Программирование GO/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0000c4090, {0xdf5f58, 0xc0000982a0})
+	D:/Программирование GO/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Программирование GO/src/net/http/server.go:3089 +0x5ed
+ERROR	2025/01/18 17:14:41 handlers.go:30: open ./ui/html/home.page.tmpl: The system cannot find the path specified.
+goroutine 19 [running]:
+runtime/debug.Stack()
+	D:/Программирование GO/src/runtime/debug/stack.go:24 +0x65
+main.(*application).serverError(0xc00008e1b0, {0xdf5c30, 0xc00016a700}, {0xdf35e0?, 0xc000079a40?})
+	D:/рабочий стол/go/snippetbox/cmd/web/helpers.go:11 +0x58
+main.(*application).home(0xfa4d10?, {0xdf5c30?, 0xc00016a700}, 0x1e3fffa4ce8?)
+	D:/рабочий стол/go/snippetbox/cmd/web/handlers.go:30 +0x14e
+net/http.HandlerFunc.ServeHTTP(0xc000094500?, {0xdf5c30?, 0xc00016a700?}, 0x95de28?)
+	D:/Программирование GO/src/net/http/server.go:2122 +0x2f
+net/http.(*ServeMux).ServeHTTP(0x0?, {0xdf5c30, 0xc00016a700}, 0xc000160400)
+	D:/Программирование GO/src/net/http/server.go:2500 +0x149
+net/http.serverHandler.ServeHTTP({0xc000079620?}, {0xdf5c30, 0xc00016a700}, 0xc000160400)
+	D:/Программирование GO/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0000c4090, {0xdf5f58, 0xc0000982a0})
+	D:/Программирование GO/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Программирование GO/src/net/http/server.go:3089 +0x5ed
+ERROR	2025/01/18 17:24:05 handlers.go:30: open ./ui/html/home.page.tmpl: The system cannot find the path specified.
+goroutine 15 [running]:
+runtime/debug.Stack()
+	D:/Программирование GO/src/runtime/debug/stack.go:24 +0x65
+main.(*application).serverError(0xc00008e1b0, {0xdf5c30, 0xc00016a8c0}, {0xdf35e0?, 0xc000079c80?})
+	D:/рабочий стол/go/snippetbox/cmd/web/helpers.go:11 +0x58
+main.(*application).home(0x59a70?, {0xdf5c30?, 0xc00016a8c0}, 0x1e3fffa4ce8?)
+	D:/рабочий стол/go/snippetbox/cmd/web/handlers.go:30 +0x14e
+net/http.HandlerFunc.ServeHTTP(0xc00007b400?, {0xdf5c30?, 0xc00016a8c0?}, 0x95de28?)
+	D:/Программирование GO/src/net/http/server.go:2122 +0x2f
+net/http.(*ServeMux).ServeHTTP(0x0?, {0xdf5c30, 0xc00016a8c0}, 0xc0000d6100)
+	D:/Программирование GO/src/net/http/server.go:2500 +0x149
+net/http.serverHandler.ServeHTTP({0xc0000983f0?}, {0xdf5c30, 0xc00016a8c0}, 0xc0000d6100)
+	D:/Программирование GO/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc00015c3f0, {0xdf5f58, 0xc0000982a0})
+	D:/Программирование GO/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Программирование GO/src/net/http/server.go:3089 +0x5ed
