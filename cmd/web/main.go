@@ -12,6 +12,7 @@ import (
 	"os"
 	"path/filepath"
 
+	"example.com/mod/pkg/models/mysql"
 	_ "github.com/lib/pq"
 )
 
@@ -19,7 +20,7 @@ import (
 type application struct {
 	errorLog *log.Logger
 	infoLog  *log.Logger
-	db       *sql.DB
+	snippets *mysql.SnippetModel
 }
 
 type neuteredFileSystem struct {
@@ -79,12 +80,6 @@ func main() {
 	// Создаем логгер для записи сообщений об ошибках.
 	errorLog := log.New(f, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
 
-	// Инициализируем новую структуру с зависимостями приложения.
-	app := &application{
-		errorLog: errorLog,
-		infoLog:  infoLog,
-	}
-
 	// Настраиваем подключение к базе данных MySQL
 	dsn := "host=localhost port=5433 user=postgres dbname=postgres sslmode=disable"
 	db, err := openDB(dsn)
@@ -92,8 +87,14 @@ func main() {
 		errorLog.Printf("Ошибка при подключении к базе данных: %v", err)
 		errorLog.Fatal(err)
 	}
-	app.db = db
 	defer db.Close()
+
+	// Инициализируем новую структуру с зависимостями приложения.
+	app := &application{
+		errorLog: errorLog,
+		infoLog:  infoLog,
+		snippets: &mysql.SnippetModel{DB: db},
+	}
 
 	// Создаем сервер.
 	srv := &http.Server{
